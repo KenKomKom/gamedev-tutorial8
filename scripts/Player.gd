@@ -10,6 +10,7 @@ var velocity = Vector2()
 
 onready var animator = self.get_node("Animator")
 onready var sprite = self.get_node("Sprite")
+onready var particle = self.get_node("Particles2D")
 
 
 func get_input():
@@ -37,4 +38,7 @@ func _process(delta):
 			sprite.flip_h = true
 	else:
 		animator.play("Idle")
-	
+	if is_on_floor() and (Input.is_action_pressed("left") or Input.is_action_pressed("right")):
+		particle.set_emitting(true)
+	else:
+		particle.set_emitting(false)

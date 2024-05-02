@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed = -400
+export (int) var speed = -300
 export (int) var GRAVITY = 1200
 
 const UP = Vector2(0,-1)
