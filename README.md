@@ -37,3 +37,47 @@ Polishing:
 Balancing:
 
 - Perlu dilakukan proses iteratif untuk mengetahui titik "sweet spot" stamina tiap level diperlukan seberapa banyak sehingga pemain tidak bisa boros mengganti karakter dan juga tidak merasa tidak diberikan kebebasan mengganti karakter.
+
+
+### Proses pengerjaan
+Jadi saya membuat particlegpu2d pada level1 dan menset-upnya sesuai dengan permintaan tutorial, dimana :
+- amount : 500
+- lifetime : 4
+- scale : 10
+- scale random : 0.5
+- emission shape : box
+- box extents : 2000,1,1
+- Color : A9A9A9
+- Gravity : (-500,500)
+- Spread : 20
+- Rotation degrees : 180
+- local coords : off
+- visibility rect : -2000, -1000, 4000, 1000
+- transform.position : 1700,-200
+- transform.rotation_degrees : 180
+- angle : 45
+- visible.show_behind_parent = true
+Dan untuk trail particle pada scene player.tscn:
+- emmiting : on
+- amount : 4
+- lifetime: 0.5
+- gravity : -200
+- spread : 180
+- velocity : 50
+- emission box :Box
+- box extents : 30,1,1
+- transform.y= 30
+- local coords = false
+
+dan ditambahkan kode
+```
+onready var particle = self.get_node("Particles2D")
+...
+if is_on_floor() and (Input.is_action_pressed("left") or Input.is_action_pressed("right")):
+        particle.set_emitting(true)
+    else:
+        particle.set_emitting(false)
+```
+Setelah itu ditambahkan spawner.tscn pada scene level 1. Dan setelah beberapa iterasi saya menetapkan Spawn Rate-nya pada 1.3 detik dan saya juga ubah collision enemy menjadi capsule agar lebih adil.
+
+Setelah hal-hal tersebut selesai dilanjutkan dengan pembuatan readme.md
